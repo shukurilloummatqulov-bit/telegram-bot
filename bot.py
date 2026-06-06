@@ -1,33 +1,31 @@
+import os
+import requests
 import telebot
 
-TOKEN = "8977018536:AAESKjDng5xEr_vSGfyiO8udsyEOsyVbiMk"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+GROK_API_KEY = os.getenv("GROK_API_KEY")
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(func=lambda message: True)
-def reply_to_all(message):
-    # Faqat guruhlarda ishlashi uchun
-    if message.chat.type == "private":
-        return  # Shaxsiy chatda javob bermaydi
-    
-    # Botning o'z xabariga javob bermasin
-    if message.from_user.is_bot:
-        return
+def chat(message):
 
-    user = message.from_user
-    username = user.username
-    
-    if username:
-        mention = f"@{username}"
-    else:
-        mention = user.first_name
+    response = requests.post(
+        "https://api.x.ai/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {GROK_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "grok-4",
+            "messages": [
+                {"role": "user", "content": message.text}
+            ]
+        }
+    )
 
-    text = f"{mention} rahmat ey oq kongil inson JAMA bekor chiqib ketdida"
+    answer = response.json()["choices"][0]["message"]["content"]
 
-    try:
-        bot.reply_to(message, text)
-    except:
-        pass
+    bot.reply_to(message, answer)
 
-print("Bot ishga tushdi... (Faqat guruhlarda ishlaydi)")
 bot.infinity_polling()
