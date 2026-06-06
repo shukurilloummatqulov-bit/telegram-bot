@@ -2,8 +2,8 @@ import os
 import requests
 import telebot
 
-BOT_TOKEN = os.getenv("8977018536:AAESKjDng5xEr_vSGfyiO8udsyEOsyVbiMk")
-GROK_API_KEY = os.getenv("xai-xw8y83z0k8zqB2MN8ZtOldIKjUu2eh9VtQCK5RYjnvR6nhQMrbt6ZvvqnrHzSrUDmo1qjmVax8jY5avA")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+GROK_API_KEY = os.getenv("GROK_API_KEY")
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
