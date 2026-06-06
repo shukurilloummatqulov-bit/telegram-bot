@@ -16,7 +16,7 @@ def chat(message):
             "Content-Type": "application/json"
         },
         json={
-            "model": "Grok Build 0.1",
+            "model": "grok-2-1212",
             "messages": [
                 {"role": "user", "content": message.text}
             ]
