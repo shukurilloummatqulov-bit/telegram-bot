@@ -31,5 +31,3 @@ def chat(message):
         bot.reply_to(message, answer)
     else:
         bot.reply_to(message, f"Xato: {data}")
-
-bot.polling()
