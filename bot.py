@@ -1,11 +1,16 @@
 import telebot
 
-TOKEN = "8977018536:AAESKjDng5xEr_vSGfyiO8udsyEOsyVbiMk"
+TOKEN = "SIZNING_TOKENINGIZ_BU_YERGA"
 
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(func=lambda message: True)
 def reply_to_all(message):
+    # Faqat guruhlarda ishlashi uchun
+    if message.chat.type == "private":
+        return  # Shaxsiy chatda javob bermaydi
+    
+    # Botning o'z xabariga javob bermasin
     if message.from_user.is_bot:
         return
 
@@ -24,5 +29,5 @@ def reply_to_all(message):
     except:
         pass
 
-print("Bot ishga tushdi...")
+print("Bot ishga tushdi... (Faqat guruhlarda ishlaydi)")
 bot.infinity_polling()
