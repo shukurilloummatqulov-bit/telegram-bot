@@ -182,7 +182,22 @@ def handle_media(message: telebot.types.Message) -> None:
 #  ISHGA TUSHIRISH
 # ─────────────────────────────────────────────────────────────
 if __name__ == "__main__":
+    
+    try:
+        bot.remove_webhook()
+        log.info("Webhook o'chirildi ✓")
+    except Exception as e:
+        log.warning("Webhook xato (muhim emas): %s", e)
+    
+    import time
+    time.sleep(2)
+    
     me = bot.get_me()
-    log.info("Bot ishga tushdi!  @%s  (id: %s)", me.username, me.id)
-    bot.infinity_polling(timeout=30, long_polling_timeout=30)
- 
+    log.info("Bot ishga tushdi! @%s (id: %s)", me.username, me.id)
+    
+    bot.infinity_polling(
+        skip_pending=True,
+        timeout=20,
+        long_polling_timeout=20,
+        none_stop=True
+    )
