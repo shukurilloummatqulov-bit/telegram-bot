@@ -37,7 +37,7 @@ client = Groq(api_key=GROQ_API_KEY)
 # ─────────────────────────────────────────────────────────────
 #  SOZLAMALAR  –  kerak bo'lsa o'zgartiring
 # ─────────────────────────────────────────────────────────────
-GROQ_MODEL  = "llama3-70b-8192"  # console.groq.com/docs dan boshqa model tanlashingiz mumkin
+GROQ_MODEL  = "llama-3.3-70b-versatile"  # console.groq.com/docs dan boshqa model tanlashingiz mumkin
 MAX_TOKENS  = 1024                # Bir javob uchun maksimal token
 TEMPERATURE = 0.7                 # 0.0 = quruq/aniq,  1.0 = erkin/ijodiy
 MAX_HISTORY = 20                  # Har user uchun xotirada nechta xabar saqlanadi
